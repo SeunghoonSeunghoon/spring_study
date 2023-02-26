@@ -1,9 +1,7 @@
 package com.example.restapi.controller;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import model.BookQueryParam;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api")
@@ -25,5 +23,26 @@ public class RestApiController {
         System.out.println("echo isMan : "+isMan);
 
         return message.toUpperCase();
+    }
+
+    @GetMapping(path = "/book")
+    public void queryParam(
+            @RequestParam String category,
+            @RequestParam String issuedYear,
+            @RequestParam(name = "issued-month") String issuedMonth,
+            @RequestParam String issued_day
+            ){
+        System.out.println(category);
+        System.out.println(issuedYear);
+        System.out.println(issuedMonth);
+        System.out.println(issued_day);
+
+    }
+
+    @GetMapping(path = "/book2")
+    public void queryParamDto(
+            BookQueryParam bookQueryParam
+    ){
+        System.out.println(bookQueryParam);
     }
 }
